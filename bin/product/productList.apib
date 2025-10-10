@@ -1,0 +1,155 @@
+### productList [GET /products{?page,limit,sort,name,category_id,price,cost_price,status,inventory_status,stock_quantity,supplier_id,created_at}]
+
+Get paginated product list with different display rules based on user authentication and role.
+
+#### Authentication
+
+If authentication fails, return error 401
+
+#### Authorization
+
+If user has [account.role] NOT IN ('user','admin'), return error 403
+
+#### Validation
+
+* [Parameters.page], [Parameters.limit]: See [pagination](#common-pagination) design
+* [Parameters.sort]: See [sort](#common-sort) design
+
+#### Search Processing
+
+* **Basic search conditions:** Get [products] records that satisfy all the following conditions
+    * [products.deleted_at] is null
+    * If [account.role] = 'user', add condition [product.status] = 'active'
+<br /><br />
+* **If [account.role] != 'admin' and the following Parameters are present, ignore those Parameters**
+    * [Parameters.cost_price]
+    * [Parameters.status]
+    * [Parameters.supplier_id]
+<br /><br />
+* **Search specification for Parameters:**
+    * [Parameters.page], [Parameters.limit]: See [pagination](#common-pagination) design
+    * [Parameters.sort]: See [sort](#common-sort) design<br />
+        Whitelist:
+        * If [account.role] = 'user': `name`, `price`, `inventory_status`, `stock_quantity`, `created_at`
+        * If [account.role] = 'admin': `name`, `price`, `cost_price`, `status`, `inventory_status`, `stock_quantity`, `total_orders`, `created_at`
+    * **See [API search](#common-filter) design before implementing the filter Parameters below**
+    * [Parameters.name]: Add condition [products.name] LIKE '%[Parameters.name]%'
+    * [Parameters.category_id]: Add condition that [product_categories] exists with
+        * [product_categories.product_id] = [products.id]
+        * [product_categories.category_id] = [Parameters.category_id]
+    * [Parameters.price]:
+        * If the part before comma in [Parameters.price] has value, add condition [products.price] >= part before comma [Parameters.price]
+        * If the part after comma in [Parameters.price] has no value, add condition [products.price] <= part before comma [Parameters.price]
+    * [Parameters.cost_price]:
+        * If the part before comma in [Parameters.cost_price] has value, add condition [products.cost_price] >= part before comma [Parameters.cost_price]
+        * If the part after comma in [Parameters.cost_price] has no value, add condition [products.cost_price] <= part before comma [Parameters.cost_price]
+    * [Parameters.status]: Add condition [products.status] = [Parameters.status]
+    * [Parameters.inventory_status]:
+        * If [Parameters.inventory_status] = `in_stock`, add condition [products.stock_quantity] > 0
+        * If [Parameters.inventory_status] = `out_of_stock`, add condition [products.stock_quantity] = 0
+    * [Parameters.stock_quantity]:
+        * If the part before comma in [Parameters.stock_quantity] has value, add condition [products.stock_quantity] >= part before comma [Parameters.stock_quantity]
+        * If the part after comma in [Parameters.stock_quantity] has no value, add condition [products.stock_quantity] <= part before comma [Parameters.stock_quantity]
+    * [Parameters.supplier_id]: Add condition that [product_suppliers] exists with
+        * [product_suppliers.product_id] = [products.id]
+        * [product_suppliers.supplier_id] = [Parameters.supplier_id]
+        * [supplier.deleted_at] is null
+    * [Parameters.created_at]:
+        * If the part before comma in [Parameters.created_at] has value, add condition [products.created_at] >= part before comma [Parameters.created_at]
+        * If the part after comma in [Parameters.created_at] has no value, add condition [products.created_at] <= part before comma [Parameters.created_at]
+
+#### Data Response Processing
+
+* Default sort: [products.created_at] DESC
+<br /><br />
+* [Response.data.items.pagination]: See [pagination](#common-pagination) design
+<br /><br />
+* **The following Response fields are only returned when [account.role] = 'admin'**
+    * [Response.data.items.cost_price]
+    * [Response.data.items.supplier]
+    * [Response.data.items.is_deletable]
+<br /><br />
+* Those not mentioned below return the value of the field with the exact same name in the DB
+* [Response.data.items.category]: Return information of [categories] that satisfy all the following conditions
+    * [categories.deleted_at] is null
+    * [categories.id] = [product_categories.category_id] where [product_categories.product_id] = [products.id]
+* [Response.data.items.images]: Return information of [product_images] where [product_images.product_id] = [products.id]
+* [Response.data.items.inventory_status]:
+    * If [products.stock_quantity] > 0, return `in_stock`
+    * If [products.stock_quantity] = 0, return `out_of_stock`
+* [Response.data.items.supplier]: Return information of [suppliers] that satisfy all the following conditions
+    * [suppliers.deleted_at] is null
+    * [suppliers.id] = [product_suppliers.supplier_id] where [product_suppliers.product_id] = [products.id]
+* [Response.data.items.is_deletable]:
+    * If [orders] exists that satisfy all the following conditions, return false
+        * [orders.status] != `canceled`
+        * [order_details] exists that satisfy all the following conditions
+            * [order_details.order_id] = [orders.id]
+            * [order_details.product_id] = [products.id]
+    * If [orders] doesn't exist that satisfy the above conditions, return true
+* [Response.data.items.total_orders]: Return the number of [orders] records that satisfy all the following conditions
+    * [orders.status] != `canceled`
+    * [order_details] exists that satisfy all the following conditions
+        * [order_details.order_id] = [orders.id]
+        * [order_details.product_id] = [products.id]
+
++ Parameters
+    + page: 1 (number, optional) - Page number
+    + limit: 20 (number, optional) - Items per page
+    + sort: `-name` (string, optional) - Sort fields with direction
+    + name: `MacBook Pro` (string, optional) - Filter by product name
+    + category_id: 11 (number, optional) - Filter by category ID
+    + price: `[2000,3000]` (string, optional) - Filter by price
+    + cost_price: `[1000,2000]` (string, optional) - Filter by cost price
+    + status: `active` (enum, optional) - Filter by product status
+    + inventory_status: `instock` (enum, optional) - Filter by inventory status
+    + stock_quantity: `[50,100]` (string, optional) - Filter by stock quantity
+    + supplier_id: 12 (number, optional) - Filter by supplier ID
+    + created_at: `[2025-01-01,2025-12-31]` (string, optional) Filter by creation timestamp
+
++ Request
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.token
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: true (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + data (object, optional) - Response data
+            + pagination (object, required) - Pagination
+                + total_items: 150 (number, required) - Total number of records
+                + page_size: 20 (number, required) - Items per page
+                + total_pages: 8 (number, required) - Total number of pages
+                + current_page: 1 (number, required) - Current page
+            + items (array, required) - List of items
+                + (object, optional)
+                    + id: 1 (number, required) - Product ID
+                    + name: `MacBook Pro M4 16-inch` (string, required) - Product name
+                    + description: `Powerful laptop for professionals` (string, required) - Product description
+                    + category (array, required) - Product category
+                        + (object, optional)
+                            + id: 1 (number, required) - Category ID
+                            + name: `Laptop` (string, required) - Category name
+                        + (object, optional)
+                            + id: 1 (number, required) - Category ID
+                            + name: `Macbook` (string, required) - Category name
+                    + images (array, required) - Product images
+                        + `https://example.com/image1.jpg` (string, optional) - Image URL
+                        + `https://example.com/image2.jpg` (string, optional) - Image URL
+                    + price: 2999.00 (number, required) - Product price in USD
+                    + cost_price: 2000.00 (number, required) - Product cost price in USD
+                    + status: `active` (enum, required) - Product status
+                    + inventory_status: `in_stock` (string, optional) - Inventory status
+                    + stock_quantity: 50 (number, required) - Available stock
+                    + supplier (array, required) - List of suppliers
+                        + (object, optional)
+                            + id: 123 (number, required) - Supplier ID
+                            + supplier_name: `Company A` (string, required) - Supplier name
+                            + supplier_status: `active` (enum, required) - Supplier status
+                            + supplier_supply_status: `discontinue` (enum, required) - Supplier supply status
+                    + is_deletable: true (boolean, required) - Whether product can be deleted
+                    + total_orders: 25 (number, required) - Total number of orders for this product
+                    + created_at: `2023-10-01T10:00:00Z` (string, required) - Creation timestamp
+                    + updated_at: `2023-10-02T15:30:00Z` (string, required) - Last update timestamp

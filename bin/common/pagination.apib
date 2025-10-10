@@ -1,0 +1,53 @@
+### Pagination [GET /pagination{?page,limit}]
+
+This document describes:
+* The common standard for handling 2 query parameters: **limit** (maximum number of elements returned per page) and **page** (specify the page number to return) used for endpoints that return lists
+* The standard pagination response format for all APIs that return paginated data 
+
+#### Validation
+
+* [Parameters.page]:
+    * Must be a positive integer
+    * Minimum value: 1
+* [Parameters.limit]:
+    * Must be a positive integer
+    * Minimum value: 1
+    * Maximum value: Environment variable value [MAX_PAGE_SIZE]
+
+#### Pagination processing
+
+* Among records that meet search conditions, only return records with order from `(([Parameters.page]-1) * [Parameters.limit])+1` to record number `[Parameters.page] * [Parameters.limit]`
+    * Example: [Parameters.page] = 3 & [Parameters.limit] = 20<br />
+    → Return records from 41st to 60th
+* If [Parameters.page] is not specified, use default value = 1
+* If [Parameters.limit] is not specified, use default value = Environment variable value [DEFAULT_PAGE_SIZE]
+
+#### Response processing
+
+* [Response.data.pagination.total_items]: Total number of records that satisfy the search conditions
+* [Response.data.pagination.page_size] = [Parameters.limit]
+    * If [Parameters.limit] is not specified, use default value = Environment variable value [DEFAULT_PAGE_SIZE]
+* [Response.data.pagination.total_pages] = [Response.data.pagination.total_items] / [Response.data.pagination.page_size], rounded up to the nearest whole number
+* [Response.data.pagination.current_page] = [Parameters.page]
+    * If [Parameters.page] is not specified, use default value = 1
+    * If [Response.data.pagination.total_items] = 0, response 1
+
++ Parameters
+    + page: 1 (number, optional) - Page number
+    + limit: 20 (number, optional) - Items per page
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: true (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + data (object, optional) - Response data
+            + pagination (object, required) - Pagination
+                + total_items: 150 (number, required) - Total number of records
+                + page_size: 20 (number, required) - Items per page
+                + total_pages: 8 (number, required) - Total number of pages
+                + current_page: 1 (number, required) - Current page
+            + items (array, required) - List of items
+                + (object, optional)
+                    + id: 1 (number, required) - ID
+                    + name: `MacBook Pro 16-inch` (string, required) - Name

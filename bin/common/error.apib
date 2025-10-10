@@ -1,0 +1,104 @@
+### Error format [GET /error]
+
+This document describes standard error responses for reuse.
+
+#### Response processing
+
+* [Response.error.code]: Error code for client
+* [Response.error.message]: Error message for client
+* [Response.error.details]: Error details (optional, only for 422 and 429)
+    * For 422 (Validation): Array of field-level errors
+        * [Response.error.details[].field]: Field name that failed validation  
+        * [Response.error.details[].message]: Specific error message for the field
+    * For 429 (Rate Limit): Object with rate limiting information
+        * [Response.error.details.retry_after]: Seconds to wait before retry
+        * [Response.error.details.limit]: Rate limit threshold
+        * [Response.error.details.remaining]: Remaining requests  
+        * [Response.error.details.reset]: Reset timestamp
+
+#### Error code definitions
+
+| HTTP status code | When to use | Examples |
+| --- | --- | --- |
+| 400 Bad Request | Request has invalid technical format | - Malformed JSON (parse error)<br />- Wrong Content-Type<br />- Missing request body when required<br />- Field has wrong data type (string instead of number) |
+| 401 Unauthorized | Not properly authenticated | - Missing or invalid Authorization header<br />- Token expired / revoked<br />- Invalid JWT signature |
+| 403 Forbidden | Authenticated but not authorized | - Missing required role / scope<br />- Attempting to access resource outside allowed boundary (different tenant)<br />- Blocked by policy (e.g. account locked) |
+| 404 Not Found | Resource does not exist (or is concealed for security) | - ID not found<br />- Endpoint does not exist (possibly framework-generated 404) |
+| 422 Unprocessable Entity | Payload is valid JSON but fails validation | - Missing required field<br />- Field violates pattern / format (email, enum, length)<br />- Other business validation errors (e.g. attempt to cancel an already delivered order) |
+| 429 Too Many Requests | Exceeded rate limit or quota | - More than environment variable value [RATE_LIMIT_PER_IP_PER_MINUTE] requests per minute per IP<br />- More than environment variable value [RATE_LIMIT_PER_USER_PER_HOUR] requests per hour per authenticated user<br />- Burst limit: More than environment variable value [RATE_LIMIT_PER_SECOND] requests per second |
+| 500 Internal Server Error | Unexpected server-side error | - Unhandled exception<br />- System / infrastructure failure (DB, cache, internal service)<br />- Other uncategorized error |
+
++ Response 400 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `REQUEST_FORMAT_ERROR` (string, required) - Code
+            + message: `Invalid request format` (string, required) - Message
+
++ Response 401 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `UNAUTHORIZED_ERROR` (string, required) - Code
+            + message: `Unauthorized` (string, required) - Message
+
++ Response 403 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `FORBIDDEN_ERROR` (string, required) - Code
+            + message: `Forbidden` (string, required) - Message
+
++ Response 404 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `NOT_FOUND_ERROR` (string, required) - Code
+            + message: `Resource not found` (string, required) - Message
+
++ Response 422 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `VALIDATION_ERROR` (string, required) - Code
+            + message: `Validation failed` (string, required) - Message
+            + details (array, optional) - Validation errors
+                + (object)
+                    + field: `email` (string, required) - Field name
+                    + message: `Invalid email format` (string, required) - Error message
+                + (object)
+                    + field: `name` (string, required) - Field name  
+                    + message: `Name is required` (string, required) - Error message
+
++ Response 429 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `RATE_LIMIT_EXCEEDED_ERROR` (string, required) - Code
+            + message: `Too many requests` (string, required) - Message
+            + details (object, optional) - Rate limit details
+                + retry_after: 60 (number, required) - Seconds to wait before retry
+                + limit: 1000 (number, required) - Rate limit threshold
+                + remaining: 0 (number, required) - Remaining requests
+                + reset: `2025-01-15T10:06:23.412Z` (string, required) - Reset timestamp
+
++ Response 500 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `INTERNAL_SERVER_ERROR` (string, required) - Code
+            + message: `Internal server error` (string, required) - Message

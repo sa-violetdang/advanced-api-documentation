@@ -1,0 +1,1426 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>My API Documentation</title><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"><style>@import url('https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200');.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}.right .hljs-comment{color:#969896}.right .css .hljs-class,.right .css .hljs-id,.right .css .hljs-pseudo,.right .hljs-attribute,.right .hljs-regexp,.right .hljs-tag,.right .hljs-variable,.right .html .hljs-doctype,.right .ruby .hljs-constant,.right .xml .hljs-doctype,.right .xml .hljs-pi,.right .xml .hljs-tag .hljs-title{color:#c66}.right .hljs-built_in,.right .hljs-constant,.right .hljs-literal,.right .hljs-number,.right .hljs-params,.right .hljs-pragma,.right .hljs-preprocessor{color:#de935f}.right .css .hljs-rule .hljs-attribute,.right .ruby .hljs-class .hljs-title{color:#f0c674}.right .hljs-header,.right .hljs-inheritance,.right .hljs-name,.right .hljs-string,.right .hljs-value,.right .ruby .hljs-symbol,.right .xml .hljs-cdata{color:#b5bd68}.right .css .hljs-hexcolor,.right .hljs-title{color:#8abeb7}.right .coffeescript .hljs-title,.right .hljs-function,.right .javascript .hljs-title,.right .perl .hljs-sub,.right .python .hljs-decorator,.right .python .hljs-title,.right .ruby .hljs-function .hljs-title,.right .ruby .hljs-title .hljs-keyword{color:#81a2be}.right .hljs-keyword,.right .javascript .hljs-function{color:#b294bb}.right .hljs{display:block;overflow-x:auto;background:#1d1f21;color:#c5c8c6;padding:.5em;-webkit-text-size-adjust:none}.right .coffeescript .javascript,.right .javascript .xml,.right .tex .hljs-formula,.right .xml .css,.right .xml .hljs-cdata,.right .xml .javascript,.right .xml .vbscript{opacity:.5}body{color:black;background:white;font:400 14px / 1.42 'Roboto',Helvetica,sans-serif}header{border-bottom:1px solid #f2f2f2;margin-bottom:12px}h1,h2,h3,h4,h5{color:black;margin:12px 0}h1 .permalink,h2 .permalink,h3 .permalink,h4 .permalink,h5 .permalink{margin-left:0;opacity:0;transition:opacity .25s ease}h1:hover .permalink,h2:hover .permalink,h3:hover .permalink,h4:hover .permalink,h5:hover .permalink{opacity:1}.triple h1 .permalink,.triple h2 .permalink,.triple h3 .permalink,.triple h4 .permalink,.triple h5 .permalink{opacity:.15}.triple h1:hover .permalink,.triple h2:hover .permalink,.triple h3:hover .permalink,.triple h4:hover .permalink,.triple h5:hover .permalink{opacity:.15}h1{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:36px}h2{font:200 36px 'Raleway',Helvetica,sans-serif;font-size:30px}h3{font-size:100%;text-transform:uppercase}h5{font-size:100%;font-weight:normal}p{margin:0 0 10px}p.choices{line-height:1.6}a{color:#428bca;text-decoration:none}li p{margin:0}hr.split{border:0;height:1px;width:100%;padding-left:6px;margin:12px auto;background-image:linear-gradient(to right, rgba(0,0,0,0) 20%, rgba(0,0,0,0.2) 51.4%, rgba(255,255,255,0.2) 51.4%, rgba(255,255,255,0) 80%)}dl dt{float:left;width:130px;clear:left;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}dl dd{margin-left:150px}blockquote{color:rgba(0,0,0,0.5);font-size:15.5px;padding:10px 20px;margin:12px 0;border-left:5px solid #e8e8e8}blockquote p:last-child{margin-bottom:0}pre{background-color:#f5f5f5;padding:12px;border:1px solid #cfcfcf;border-radius:6px;overflow:auto}pre code{color:black;background-color:transparent;padding:0;border:none}code{color:#444;background-color:#f5f5f5;font:'Inconsolata',monospace;padding:1px 4px;border:1px solid #cfcfcf;border-radius:3px}ul,ol{padding-left:2em}table{border-collapse:collapse;border-spacing:0;margin-bottom:12px}table tr:nth-child(2n){background-color:#fafafa}table th,table td{padding:6px 12px;border:1px solid #e6e6e6}.text-muted{opacity:.5}.note,.warning{padding:.3em 1em;margin:1em 0;border-radius:2px;font-size:90%}.note h1,.warning h1,.note h2,.warning h2,.note h3,.warning h3,.note h4,.warning h4,.note h5,.warning h5,.note h6,.warning h6{font-family:200 36px 'Raleway',Helvetica,sans-serif;font-size:135%;font-weight:500}.note p,.warning p{margin:.5em 0}.note{color:black;background-color:#f0f6fb;border-left:4px solid #428bca}.note h1,.note h2,.note h3,.note h4,.note h5,.note h6{color:#428bca}.warning{color:black;background-color:#fbf1f0;border-left:4px solid #c9302c}.warning h1,.warning h2,.warning h3,.warning h4,.warning h5,.warning h6{color:#c9302c}header{margin-top:24px}nav{position:fixed;top:24px;bottom:0;overflow-y:auto}nav .resource-group{padding:0}nav .resource-group .heading{position:relative}nav .resource-group .heading .chevron{position:absolute;top:12px;right:12px;opacity:.5}nav .resource-group .heading a{display:block;color:black;opacity:.7;border-left:2px solid transparent;margin:0}nav .resource-group .heading a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul{list-style-type:none;padding-left:0}nav ul a{display:block;font-size:13px;color:rgba(0,0,0,0.7);padding:8px 12px;border-top:1px solid #d9d9d9;border-left:2px solid transparent;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}nav ul a:hover{text-decoration:none;background-color:bad-color;border-left:2px solid black}nav ul>li{margin:0}nav ul>li:first-child{margin-top:-12px}nav ul>li:last-child{margin-bottom:-12px}nav ul ul a{padding-left:24px}nav ul ul li{margin:0}nav ul ul li:first-child{margin-top:0}nav ul ul li:last-child{margin-bottom:0}nav>div>div>ul>li:first-child>a{border-top:none}.preload *{transition:none !important}.pull-left{float:left}.pull-right{float:right}.badge{display:inline-block;float:right;min-width:10px;min-height:14px;padding:3px 7px;font-size:12px;color:#000;background-color:#f2f2f2;border-radius:10px;margin:-2px 0}.badge.get{color:#70bbe1;background-color:#d9edf7}.badge.head{color:#70bbe1;background-color:#d9edf7}.badge.options{color:#70bbe1;background-color:#d9edf7}.badge.put{color:#f0db70;background-color:#fcf8e3}.badge.patch{color:#f0db70;background-color:#fcf8e3}.badge.post{color:#93cd7c;background-color:#dff0d8}.badge.delete{color:#ce8383;background-color:#f2dede}.collapse-button{float:right}.collapse-button .close{display:none;color:#428bca;cursor:pointer}.collapse-button .open{color:#428bca;cursor:pointer}.collapse-button.show .close{display:inline}.collapse-button.show .open{display:none}.collapse-content{max-height:0;overflow:hidden;transition:max-height .3s ease-in-out}nav{width:220px}.container{max-width:940px;margin-left:auto;margin-right:auto}.container .row .content{margin-left:244px;width:696px}.container .row:after{content:'';display:block;clear:both}.container-fluid nav{width:22%}.container-fluid .row .content{margin-left:24%}.container-fluid.triple nav{width:16.5%;padding-right:1px}.container-fluid.triple .row .content{position:relative;margin-left:16.5%;padding-left:24px}.middle:before,.middle:after{content:'';display:table}.middle:after{clear:both}.middle{box-sizing:border-box;width:51.5%;padding-right:12px}.right{box-sizing:border-box;float:right;width:48.5%;padding-left:12px}.right a{color:#428bca}.right h1,.right h2,.right h3,.right h4,.right h5,.right p,.right div{color:white}.right pre{background-color:#1d1f21;border:1px solid #1d1f21}.right pre code{color:#c5c8c6}.right .description{margin-top:12px}.triple .resource-heading{font-size:125%}.definition{margin-top:12px;margin-bottom:12px}.definition .method{font-weight:bold}.definition .method.get{color:#2e8ab8}.definition .method.head{color:#2e8ab8}.definition .method.options{color:#2e8ab8}.definition .method.post{color:#56b82e}.definition .method.put{color:#b8a22e}.definition .method.patch{color:#b8a22e}.definition .method.delete{color:#b82e2e}.definition .uri{word-break:break-all;word-wrap:break-word}.definition .hostname{opacity:.5}.example-names{background-color:#eee;padding:12px;border-radius:6px}.example-names .tab-button{cursor:pointer;color:black;border:1px solid #ddd;padding:6px;margin-left:12px}.example-names .tab-button.active{background-color:#d5d5d5}.right .example-names{background-color:#444}.right .example-names .tab-button{color:white;border:1px solid #666;border-radius:6px}.right .example-names .tab-button.active{background-color:#5e5e5e}#nav-background{position:fixed;left:0;top:0;bottom:0;width:16.5%;padding-right:14.4px;background-color:#fbfbfb;border-right:1px solid #f0f0f0;z-index:-1}#right-panel-background{position:absolute;right:-12px;top:-12px;bottom:-12px;width:48.6%;background-color:#333;z-index:-1}@media (max-width:1200px){nav{width:198px}.container{max-width:840px}.container .row .content{margin-left:224px;width:606px}}@media (max-width:992px){nav{width:169.4px}.container{max-width:720px}.container .row .content{margin-left:194px;width:526px}}@media (max-width:768px){nav{display:none}.container{width:95%;max-width:none}.container .row .content,.container-fluid .row .content,.container-fluid.triple .row .content{margin-left:auto;margin-right:auto;width:95%}#nav-background{display:none}#right-panel-background{width:48.6%}}.back-to-top{position:fixed;z-index:1;bottom:0;right:24px;padding:4px 8px;color:rgba(0,0,0,0.5);background-color:#f2f2f2;text-decoration:none !important;border-top:1px solid #d9d9d9;border-left:1px solid #d9d9d9;border-right:1px solid #d9d9d9;border-top-left-radius:3px;border-top-right-radius:3px}.resource-group{padding:12px;margin-bottom:12px;background-color:white;border:1px solid #d9d9d9;border-radius:6px}.resource-group h2.group-heading,.resource-group .heading a{padding:12px;margin:-12px -12px 12px -12px;background-color:#f2f2f2;border-bottom:1px solid #d9d9d9;border-top-left-radius:6px;border-top-right-radius:6px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden}.triple .content .resource-group{padding:0;border:none}.triple .content .resource-group h2.group-heading,.triple .content .resource-group .heading a{margin:0 0 12px 0;border:1px solid #d9d9d9}nav .resource-group .heading a{padding:12px;margin-bottom:0}nav .resource-group .collapse-content{padding:0}.action{margin-bottom:12px;padding:12px 12px 0 12px;overflow:hidden;border:1px solid transparent;border-radius:6px}.action h4.action-heading{padding:6px 12px;margin:-12px -12px 12px -12px;border-bottom:1px solid transparent;border-top-left-radius:6px;border-top-right-radius:6px;overflow:hidden}.action h4.action-heading .name{float:right;font-weight:normal;padding:6px 0}.action h4.action-heading .method{padding:6px 12px;margin-right:12px;border-radius:3px;display:inline-block}.action h4.action-heading .method.get{color:#fff;background-color:#337ab7}.action h4.action-heading .method.head{color:#fff;background-color:#337ab7}.action h4.action-heading .method.options{color:#fff;background-color:#337ab7}.action h4.action-heading .method.put{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.patch{color:#fff;background-color:#ed9c28}.action h4.action-heading .method.post{color:#fff;background-color:#5cb85c}.action h4.action-heading .method.delete{color:#fff;background-color:#d9534f}.action h4.action-heading code{color:#444;background-color:#f5f5f5;border-color:#cfcfcf;font-weight:normal;word-break:break-all;display:inline-block;margin-top:2px}.action dl.inner{padding-bottom:2px}.action .title{border-bottom:1px solid white;margin:0 -12px -1px -12px;padding:12px}.action.get{border-color:#bce8f1}.action.get h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.head{border-color:#bce8f1}.action.head h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.options{border-color:#bce8f1}.action.options h4.action-heading{color:#337ab7;background:#d9edf7;border-bottom-color:#bce8f1}.action.post{border-color:#d6e9c6}.action.post h4.action-heading{color:#5cb85c;background:#dff0d8;border-bottom-color:#d6e9c6}.action.put{border-color:#faebcc}.action.put h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.patch{border-color:#faebcc}.action.patch h4.action-heading{color:#ed9c28;background:#fcf8e3;border-bottom-color:#faebcc}.action.delete{border-color:#ebccd1}.action.delete h4.action-heading{color:#d9534f;background:#f2dede;border-bottom-color:#ebccd1}</style></head><body class="preload"><div id="nav-background"></div><div class="container-fluid triple"><div class="row"><nav><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#common">common</a></div><div class="collapse-content"><ul><li><a href="#common-error-format-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Error format</a></li><li><a href="#common-pagination-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Pagination</a></li><li><a href="#common-sort-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Sort</a></li><li><a href="#common-filter-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Filter</a></li><li><a href="#common-message-list-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>Message List</a></li></ul></div></div><div class="resource-group"><div class="heading"><div class="chevron"><i class="open fa fa-angle-down"></i></div><a href="#product">Product</a></div><div class="collapse-content"><ul><li><a href="#product-productlist-get"><span class="badge get"><i class="fa fa-arrow-down"></i></span>productList</a></li></ul></div></div><p style="text-align: center; word-wrap: break-word;"><a href="https://api.example.com">https://api.example.com</a></p></nav><div class="content"><div id="right-panel-background"></div><div class="middle"><header><h1 id="top">My API Documentation</h1></header></div><div class="right"><h5>API Endpoint</h5><a href="https://api.example.com">https://api.example.com</a></div><div class="middle"><p>This is an API template for reference purposes only.</p>
+</div><div class="middle"><section id="common" class="resource-group"><h2 class="group-heading">common <a href="#common" class="permalink">&para;</a></h2></section></div><div class="middle"><div id="common-error-format" class="resource"><h3 class="resource-heading">Error format <a href="#common-error-format" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.example.com</span>/error</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">400</span><span class="tab-button">401</span><span class="tab-button">403</span><span class="tab-button">404</span><span class="tab-button">422</span><span class="tab-button">429</span><span class="tab-button">500</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"REQUEST_FORMAT_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Invalid request format"</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"UNAUTHORIZED_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Unauthorized"</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"FORBIDDEN_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Forbidden"</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"NOT_FOUND_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Resource not found"</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"VALIDATION_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Validation failed"</span></span>,
+    "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">field</span>": <span class="hljs-value"><span class="hljs-string">"email"</span></span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Invalid email format"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">field</span>": <span class="hljs-value"><span class="hljs-string">"name"</span></span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Name is required"</span>
+      </span>}
+    ]
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">details</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Validation errors"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"RATE_LIMIT_EXCEEDED_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Too many requests"</span></span>,
+    "<span class="hljs-attribute">details</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">retry_after</span>": <span class="hljs-value"><span class="hljs-number">60</span></span>,
+      "<span class="hljs-attribute">limit</span>": <span class="hljs-value"><span class="hljs-number">1000</span></span>,
+      "<span class="hljs-attribute">remaining</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+      "<span class="hljs-attribute">reset</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:06:23.412Z"</span>
+    </span>}
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">details</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">retry_after</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Seconds to wait before retry"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">limit</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Rate limit threshold"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">remaining</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Remaining requests"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">reset</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Reset timestamp"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+            <span class="hljs-string">"retry_after"</span>,
+            <span class="hljs-string">"limit"</span>,
+            <span class="hljs-string">"remaining"</span>,
+            <span class="hljs-string">"reset"</span>
+          ]</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Rate limit details"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"INTERNAL_SERVER_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Internal server error"</span>
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="common-error-format-get" class="action get"><h4 class="action-heading"><div class="name">Error format</div><a href="#common-error-format-get" class="method get">GET</a><code class="uri">/error</code></h4><p>This document describes standard error responses for reuse.</p>
+<h4 id="header-response-processing">Response processing <a class="permalink" href="#header-response-processing" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>[Response.error.code]: Error code for client</p>
+</li>
+<li>
+<p>[Response.error.message]: Error message for client</p>
+</li>
+<li>
+<p>[Response.error.details]: Error details (optional, only for 422 and 429)</p>
+<ul>
+<li>For 422 (Validation): Array of field-level errors
+<ul>
+<li>[Response.error.details[].field]: Field name that failed validation</li>
+<li>[Response.error.details[].message]: Specific error message for the field</li>
+</ul>
+</li>
+<li>For 429 (Rate Limit): Object with rate limiting information
+<ul>
+<li>[Response.error.details.retry_after]: Seconds to wait before retry</li>
+<li>[Response.error.details.limit]: Rate limit threshold</li>
+<li>[Response.error.details.remaining]: Remaining requests</li>
+<li>[Response.error.details.reset]: Reset timestamp</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="header-error-code-definitions">Error code definitions <a class="permalink" href="#header-error-code-definitions" aria-hidden="true">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>HTTP status code</th>
+<th>When to use</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400 Bad Request</td>
+<td>Request has invalid technical format</td>
+<td>- Malformed JSON (parse error)<br />- Wrong Content-Type<br />- Missing request body when required<br />- Field has wrong data type (string instead of number)</td>
+</tr>
+<tr>
+<td>401 Unauthorized</td>
+<td>Not properly authenticated</td>
+<td>- Missing or invalid Authorization header<br />- Token expired / revoked<br />- Invalid JWT signature</td>
+</tr>
+<tr>
+<td>403 Forbidden</td>
+<td>Authenticated but not authorized</td>
+<td>- Missing required role / scope<br />- Attempting to access resource outside allowed boundary (different tenant)<br />- Blocked by policy (e.g. account locked)</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>Resource does not exist (or is concealed for security)</td>
+<td>- ID not found<br />- Endpoint does not exist (possibly framework-generated 404)</td>
+</tr>
+<tr>
+<td>422 Unprocessable Entity</td>
+<td>Payload is valid JSON but fails validation</td>
+<td>- Missing required field<br />- Field violates pattern / format (email, enum, length)<br />- Other business validation errors (e.g. attempt to cancel an already delivered order)</td>
+</tr>
+<tr>
+<td>429 Too Many Requests</td>
+<td>Exceeded rate limit or quota</td>
+<td>- More than environment variable value [RATE_LIMIT_PER_IP_PER_MINUTE] requests per minute per IP<br />- More than environment variable value [RATE_LIMIT_PER_USER_PER_HOUR] requests per hour per authenticated user<br />- Burst limit: More than environment variable value [RATE_LIMIT_PER_SECOND] requests per second</td>
+</tr>
+<tr>
+<td>500 Internal Server Error</td>
+<td>Unexpected server-side error</td>
+<td>- Unhandled exception<br />- System / infrastructure failure (DB, cache, internal service)<br />- Other uncategorized error</td>
+</tr>
+</tbody>
+</table>
+</div></div><hr class="split"><div class="middle"><div id="common-pagination" class="resource"><h3 class="resource-heading">Pagination <a href="#common-pagination" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.example.com</span>/pagination?<span class="hljs-attribute">page=</span><span class="hljs-literal">1</span>&<span class="hljs-attribute">limit=</span><span class="hljs-literal">20</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">total_items</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
+      "<span class="hljs-attribute">page_size</span>": <span class="hljs-value"><span class="hljs-number">20</span></span>,
+      "<span class="hljs-attribute">total_pages</span>": <span class="hljs-value"><span class="hljs-number">8</span></span>,
+      "<span class="hljs-attribute">current_page</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">items</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"MacBook Pro 16-inch"</span>
+      </span>}
+    ]
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">total_items</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total number of records"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">page_size</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Items per page"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">total_pages</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total number of pages"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">current_page</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Current page"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+            <span class="hljs-string">"total_items"</span>,
+            <span class="hljs-string">"page_size"</span>,
+            <span class="hljs-string">"total_pages"</span>,
+            <span class="hljs-string">"current_page"</span>
+          ]</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Pagination"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">items</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"List of items"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"pagination"</span>,
+        <span class="hljs-string">"items"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Response data"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="common-pagination-get" class="action get"><h4 class="action-heading"><div class="name">Pagination</div><a href="#common-pagination-get" class="method get">GET</a><code class="uri">/pagination{?page,limit}</code></h4><p>This document describes:</p>
+<ul>
+<li>
+<p>The common standard for handling 2 query parameters: <strong>limit</strong> (maximum number of elements returned per page) and <strong>page</strong> (specify the page number to return) used for endpoints that return lists</p>
+</li>
+<li>
+<p>The standard pagination response format for all APIs that return paginated data</p>
+</li>
+</ul>
+<h4 id="header-validation">Validation <a class="permalink" href="#header-validation" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>[Parameters.page]:</p>
+<ul>
+<li>Must be a positive integer</li>
+<li>Minimum value: 1</li>
+</ul>
+</li>
+<li>
+<p>[Parameters.limit]:</p>
+<ul>
+<li>Must be a positive integer</li>
+<li>Minimum value: 1</li>
+<li>Maximum value: Environment variable value [MAX_PAGE_SIZE]</li>
+</ul>
+</li>
+</ul>
+<h4 id="header-pagination-processing">Pagination processing <a class="permalink" href="#header-pagination-processing" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>Among records that meet search conditions, only return records with order from <code>(([Parameters.page]-1) * [Parameters.limit])+1</code> to record number <code>[Parameters.page] * [Parameters.limit]</code></p>
+<ul>
+<li>Example: [Parameters.page] = 3 &amp; [Parameters.limit] = 20<br />
+→ Return records from 41st to 60th</li>
+</ul>
+</li>
+<li>
+<p>If [Parameters.page] is not specified, use default value = 1</p>
+</li>
+<li>
+<p>If [Parameters.limit] is not specified, use default value = Environment variable value [DEFAULT_PAGE_SIZE]</p>
+</li>
+</ul>
+<h4 id="header-response-processing-1">Response processing <a class="permalink" href="#header-response-processing-1" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>[Response.data.pagination.total_items]: Total number of records that satisfy the search conditions</p>
+</li>
+<li>
+<p>[Response.data.pagination.page_size] = [Parameters.limit]</p>
+<ul>
+<li>If [Parameters.limit] is not specified, use default value = Environment variable value [DEFAULT_PAGE_SIZE]</li>
+</ul>
+</li>
+<li>
+<p>[Response.data.pagination.total_pages] = [Response.data.pagination.total_items] / [Response.data.pagination.page_size], rounded up to the nearest whole number</p>
+</li>
+<li>
+<p>[Response.data.pagination.current_page] = [Parameters.page]</p>
+<ul>
+<li>If [Parameters.page] is not specified, use default value = 1</li>
+<li>If [Response.data.pagination.total_items] = 0, response 1</li>
+</ul>
+</li>
+</ul>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>page</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Page number</p>
+</dd><dt>limit</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>20</span></span><p>Items per page</p>
+</dd></dl></div></div></div><hr class="split"><div class="middle"><div id="common-sort" class="resource"><h3 class="resource-heading">Sort <a href="#common-sort" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.example.com</span>/sort?<span class="hljs-attribute">sort=</span><span class="hljs-literal">created_at,-name</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="common-sort-get" class="action get"><h4 class="action-heading"><div class="name">Sort</div><a href="#common-sort-get" class="method get">GET</a><code class="uri">/sort{?sort}</code></h4><p>This document describes the common standard for handling query parameter <strong>sort</strong> (specify the order of returned results).</p>
+<h4 id="header-syntax">Syntax <a class="permalink" href="#header-syntax" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p><code>sort=&lt;field&gt;</code>: Ascending order (default)<br />
+Example: <code>?sort=name</code> (ascending by name)</p>
+</li>
+<li>
+<p><code>sort=-&lt;field&gt;</code>: Descending order (minus sign <code>-</code> before field name)<br />
+Example: <code>?sort=-created_at</code> (descending by creation time)</p>
+</li>
+<li>
+<p>Can sort by one or multiple fields. For multiple fields: separate with comma <code>,</code>
+Example: <code>?sort=-created_at,name</code> (descending by creation time, then ascending by name)</p>
+</li>
+</ul>
+<h4 id="header-validation-1">Validation <a class="permalink" href="#header-validation-1" aria-hidden="true">¶</a></h4>
+<ul>
+<li>[Parameters.sort]:
+<ul>
+<li>If syntax is incorrect (e.g., <code>sort=,-name</code>), return 422 error <code>SORT_SYNTAX_ERROR</code></li>
+<li>Maximum 5 fields allowed per request<br />
+If more than 5 fields specified, return 422 error <code>SORT_TOO_MANY_FIELDS</code></li>
+<li>Only allowed to sort by fields in whitelist specified in each API design
+If field is not in whitelist, return 422 error <code>SORT_FIELD_INVALID</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="header-sort-processing">Sort processing <a class="permalink" href="#header-sort-processing" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>If no minus sign <code>-</code> before field name: sort ASC</p>
+</li>
+<li>
+<p>If minus sign <code>-</code> before field name: sort DESC</p>
+</li>
+<li>
+<p>For multiple fields: Priority sort by earlier fields first, later fields second</p>
+</li>
+<li>
+<p>Default behavior: <code>null</code> values at end for ascending, at beginning for descending</p>
+</li>
+<li>
+<p>Stable sort: if field values are equal, original order (or default key like <code>id</code> ascending) is preserved</p>
+</li>
+</ul>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>sort</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>created_at,-name</span></span><p>Sort fields with direction</p>
+</dd></dl></div></div></div><hr class="split"><div class="middle"><div id="common-filter" class="resource"><h3 class="resource-heading">Filter <a href="#common-filter" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.example.com</span>/filter?<span class="hljs-attribute">name=</span><span class="hljs-literal">MacBook Pro</span>&<span class="hljs-attribute">category_id=</span><span class="hljs-literal">11</span>&<span class="hljs-attribute">status=</span><span class="hljs-literal">active</span>&<span class="hljs-attribute">in_stock=</span><span class="hljs-literal">true</span>&<span class="hljs-attribute">product_code=</span><span class="hljs-literal">[LAP,1203]</span>&<span class="hljs-attribute">price=</span><span class="hljs-literal">[2000,3000]</span>&<span class="hljs-attribute">created_at=</span><span class="hljs-literal">[2025-01-01,2025-12-31]</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="common-filter-get" class="action get"><h4 class="action-heading"><div class="name">Filter</div><a href="#common-filter-get" class="method get">GET</a><code class="uri">/filter{?name,category_id,status,in_stock,product_code,price,created_at}</code></h4><p>This document describes the common standard for handling query parameters with filtering functionality</p>
+<h4 id="header-filter-processing">Filter processing <a class="permalink" href="#header-filter-processing" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>When the same parameter name receives multiple values, join the conditions with OR</p>
+<ul>
+<li>Example 1: ?tel=123&amp;tel=456<br />
+→ Search condition will be<pre><code><span class="hljs-keyword">WHERE</span> (tel LIKE <span class="hljs-string">'%123%'</span> <span class="hljs-keyword">OR</span> tel LIKE <span class="hljs-string">'%456%'</span>)</code></pre>
+</li>
+<li>Example 2: ?status=1&amp;status=2<br />
+→ Search condition will be<pre><code><span class="hljs-keyword">WHERE</span> (<span class="hljs-keyword">status</span> = <span class="hljs-number">1</span> OR <span class="hljs-keyword">status</span> = <span class="hljs-number">2</span>)</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>For parameters with from-to search functionality that work as a pair, must send/receive in array format as follows</p>
+<ul>
+<li>Example: ?start_date=[2024-01-01,2024-01-31]&amp;start_date=[2024-03-01,2024-03-31]<br />
+→ Search condition will be<pre><code><span class="hljs-keyword">WHERE</span> 
+    (
+        (start_date &gt;= <span class="hljs-string">'2024-01-01'</span> <span class="hljs-keyword">AND</span> start_date &lt;= <span class="hljs-string">'2024-01-31'</span>)
+        <span class="hljs-keyword">OR</span>
+        (start_date &gt;= <span class="hljs-string">'2024-03-01'</span> <span class="hljs-keyword">AND</span> start_date &lt;= <span class="hljs-string">'2024-03-31'</span>)
+    )</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>For parameters that work as a pair, must send/receive in array format as follows</p>
+<ul>
+<li>Example: ?product_code=[LAP,1203]&amp;product_code=[SP,3201]<br />
+→ Search condition will be<pre><code><span class="hljs-keyword">WHERE</span>
+    (
+        (product_category = <span class="hljs-string">'LAP'</span> <span class="hljs-keyword">AND</span> product_id = <span class="hljs-string">'1203'</span>)
+        <span class="hljs-keyword">OR</span>
+        (product_category = <span class="hljs-string">'SP'</span> <span class="hljs-keyword">AND</span> product_id = <span class="hljs-string">'3201'</span>)
+    )</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Join search conditions for different parameter names with AND</p>
+<ul>
+<li>Example: ?tel=123&amp;tel=456&amp;status=1&amp;status=2&amp;status=3&amp;start_date=[2024-01-01,2024-01-31]&amp;start_date=[2024-03-01,2024-03-31]<br />
+→ Search condition will be<pre><code><span class="hljs-keyword">WHERE</span>
+    (tel LIKE <span class="hljs-string">'%123%'</span> <span class="hljs-keyword">OR</span> tel LIKE <span class="hljs-string">'%456%'</span>)&lt;br /&gt;
+    <span class="hljs-keyword">AND</span> (status = <span class="hljs-number">1</span> <span class="hljs-keyword">OR</span> status = <span class="hljs-number">2</span> <span class="hljs-keyword">OR</span> status = <span class="hljs-number">3</span>)&lt;br /&gt;
+    <span class="hljs-keyword">AND</span> (
+        (start_date &gt;= <span class="hljs-string">'2024-01-01'</span> <span class="hljs-keyword">AND</span> start_date &lt;= <span class="hljs-string">'2024-01-31'</span>)
+        <span class="hljs-keyword">OR</span>
+        (start_date &gt;= <span class="hljs-string">'2024-03-01'</span> <span class="hljs-keyword">AND</span> start_date &lt;= <span class="hljs-string">'2024-03-31'</span>)
+    )</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>name</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>MacBook Pro</span></span><p>Filter by product name</p>
+</dd><dt>category_id</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>11</span></span><p>Filter by category ID</p>
+</dd><dt>status</dt><dd><code>enum</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>active</span></span><p>Filter by product status</p>
+</dd><dt>in_stock</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>Filter by instock flag</p>
+</dd><dt>product_code</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>[LAP,1203]</span></span><p>Filter by product code</p>
+</dd><dt>price</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>[2000,3000]</span></span><p>Filter by price</p>
+</dd><dt>created_at</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>[2025-01-01,2025-12-31]</span></span><p>Filter by creation timestamp</p>
+</dd></dl></div></div></div><hr class="split"><div class="middle"><div id="common-message-list" class="resource"><h3 class="resource-heading">Message List <a href="#common-message-list" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.example.com</span>/messages</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">422</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">false</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">code</span>": <span class="hljs-value"><span class="hljs-string">"VALIDATION_ERROR"</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Validation failed"</span></span>,
+    "<span class="hljs-attribute">details</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">field</span>": <span class="hljs-value"><span class="hljs-string">"email"</span></span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Invalid email format"</span>
+      </span>},
+      {
+        "<span class="hljs-attribute">field</span>": <span class="hljs-value"><span class="hljs-string">"name"</span></span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Name is required"</span>
+      </span>}
+    ]
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">error</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">code</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Code"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">message</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Message"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">details</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Validation errors"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"code"</span>,
+        <span class="hljs-string">"message"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Error information"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>,
+    <span class="hljs-string">"error"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="common-message-list-get" class="action get"><h4 class="action-heading"><div class="name">Message List</div><a href="#common-message-list-get" class="method get">GET</a><code class="uri">/messages</code></h4><p>This document describes all message codes used throughout the API system.</p>
+<h4 id="header-message-code-definitions">Message Code Definitions <a class="permalink" href="#header-message-code-definitions" aria-hidden="true">¶</a></h4>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>HTTP Status</th>
+<th>Message</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>REQUEST_FORMAT_ERROR</td>
+<td>400</td>
+<td>Invalid request format</td>
+<td>Malformed JSON, wrong Content-Type, missing request body when required, field has wrong data type</td>
+</tr>
+<tr>
+<td>UNAUTHORIZED_ERROR</td>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Missing or invalid Authorization header, token expired/revoked, invalid JWT signature</td>
+</tr>
+<tr>
+<td>FORBIDDEN_ERROR</td>
+<td>403</td>
+<td>Forbidden</td>
+<td>Missing required role/scope, attempting to access resource outside allowed boundary, blocked by policy</td>
+</tr>
+<tr>
+<td>NOT_FOUND_ERROR</td>
+<td>404</td>
+<td>Resource not found</td>
+<td>ID not found, endpoint does not exist</td>
+</tr>
+<tr>
+<td>VALIDATION_ERROR</td>
+<td>422</td>
+<td>Validation failed</td>
+<td>Missing required field, field violates pattern/format, other business validation errors</td>
+</tr>
+<tr>
+<td>SORT_SYNTAX_ERROR</td>
+<td>422</td>
+<td>Invalid sort syntax</td>
+<td>Sort parameter has incorrect syntax (e.g., <code>sort=,-name</code>)</td>
+</tr>
+<tr>
+<td>SORT_TOO_MANY_FIELDS</td>
+<td>422</td>
+<td>Too many sort fields</td>
+<td>More than 5 fields specified in sort parameter</td>
+</tr>
+<tr>
+<td>SORT_FIELD_INVALID</td>
+<td>422</td>
+<td>Invalid sort field</td>
+<td>Sort field is not in the allowed whitelist</td>
+</tr>
+<tr>
+<td>FIELD_REQUIRED</td>
+<td>422</td>
+<td>Field is required</td>
+<td>Required field is missing or empty</td>
+</tr>
+<tr>
+<td>FIELD_MUST_BE_POSITIVE_INTEGER</td>
+<td>422</td>
+<td>Must be positive integer and greater than 0</td>
+<td>Field value must be a positive integer (greater than 0)</td>
+</tr>
+<tr>
+<td>FIELD_INVALID_FORMAT</td>
+<td>422</td>
+<td>Invalid field format ({format})</td>
+<td>Field value does not match expected format or pattern<br />{format} = expected format, e.g. email, phone number, zipcode, YYYY-MM-DD…</td>
+</tr>
+<tr>
+<td>FIELD_VALUE_TOO_SMALL</td>
+<td>422</td>
+<td>Value below minimum ({min_value})</td>
+<td>Field value is smaller than allowed minimum value<br />{min_value} = allowed minimum value</td>
+</tr>
+<tr>
+<td>FIELD_VALUE_TOO_LARGE</td>
+<td>422</td>
+<td>Value above maximum ({max_value})</td>
+<td>Field value is larger than allowed maximum value<br />{max_value} = allowed maximum value</td>
+</tr>
+<tr>
+<td>FIELD_LENGTH_TOO_SHORT</td>
+<td>422</td>
+<td>Length below minimum ({min_length})</td>
+<td>Field length is shorter than required minimum length<br />{min_length} = required minimum length</td>
+</tr>
+<tr>
+<td>FIELD_LENGTH_TOO_LONG</td>
+<td>422</td>
+<td>Length above maximum ({max_length})</td>
+<td>Field length is longer than allowed maximum length<br />{max_length} = allowed maximum length</td>
+</tr>
+<tr>
+<td>RATE_LIMIT_EXCEEDED_ERROR</td>
+<td>429</td>
+<td>Too many requests</td>
+<td>Exceeded rate limit or quota thresholds</td>
+</tr>
+<tr>
+<td>INTERNAL_SERVER_ERROR</td>
+<td>500</td>
+<td>Internal server error</td>
+<td>Unhandled exception, system/infrastructure failure</td>
+</tr>
+</tbody>
+</table>
+<h4 id="header-response-format">Response Format <a class="permalink" href="#header-response-format" aria-hidden="true">¶</a></h4>
+<p>All error messages follow the standard error response format defined in <a href="#common-error-format">error.apib</a>.</p>
+</div></div><hr class="split"><div class="middle"><section id="product" class="resource-group"><h2 class="group-heading">Product <a href="#product" class="permalink">&para;</a></h2></section></div><div class="middle"><div id="product-productlist" class="resource"><h3 class="resource-heading">productList <a href="#product-productlist" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://api.example.com</span>/products?<span class="hljs-attribute">page=</span><span class="hljs-literal">1</span>&<span class="hljs-attribute">limit=</span><span class="hljs-literal">20</span>&<span class="hljs-attribute">sort=</span><span class="hljs-literal">-name</span>&<span class="hljs-attribute">name=</span><span class="hljs-literal">MacBook Pro</span>&<span class="hljs-attribute">category_id=</span><span class="hljs-literal">11</span>&<span class="hljs-attribute">price=</span><span class="hljs-literal">[2000,3000]</span>&<span class="hljs-attribute">cost_price=</span><span class="hljs-literal">[1000,2000]</span>&<span class="hljs-attribute">status=</span><span class="hljs-literal">active</span>&<span class="hljs-attribute">inventory_status=</span><span class="hljs-literal">instock</span>&<span class="hljs-attribute">stock_quantity=</span><span class="hljs-literal">[50,100]</span>&<span class="hljs-attribute">supplier_id=</span><span class="hljs-literal">12</span>&<span class="hljs-attribute">created_at=</span><span class="hljs-literal">[2025-01-01,2025-12-31]</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Authorization</span>: <span class="hljs-string">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.token</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span></code></pre><div style="height: 1px;"></div><h5>Body</h5><pre><code>{
+  "<span class="hljs-attribute">request_id</span>": <span class="hljs-value"><span class="hljs-string">"a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11"</span></span>,
+  "<span class="hljs-attribute">success</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+  "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value"><span class="hljs-string">"2025-01-15T10:05:23.412Z"</span></span>,
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">total_items</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
+      "<span class="hljs-attribute">page_size</span>": <span class="hljs-value"><span class="hljs-number">20</span></span>,
+      "<span class="hljs-attribute">total_pages</span>": <span class="hljs-value"><span class="hljs-number">8</span></span>,
+      "<span class="hljs-attribute">current_page</span>": <span class="hljs-value"><span class="hljs-number">1</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">items</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+        "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"MacBook Pro M4 16-inch"</span></span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Powerful laptop for professionals"</span></span>,
+        "<span class="hljs-attribute">category</span>": <span class="hljs-value">[
+          {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Laptop"</span>
+          </span>},
+          {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+            "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Macbook"</span>
+          </span>}
+        ]</span>,
+        "<span class="hljs-attribute">images</span>": <span class="hljs-value">[
+          <span class="hljs-string">"https://example.com/image1.jpg"</span>,
+          <span class="hljs-string">"https://example.com/image2.jpg"</span>
+        ]</span>,
+        "<span class="hljs-attribute">price</span>": <span class="hljs-value"><span class="hljs-number">2999</span></span>,
+        "<span class="hljs-attribute">cost_price</span>": <span class="hljs-value"><span class="hljs-number">2000</span></span>,
+        "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"active"</span></span>,
+        "<span class="hljs-attribute">inventory_status: `in_stock`</span>": <span class="hljs-value"><span class="hljs-string">"Hello, world!"</span></span>,
+        "<span class="hljs-attribute">stock_quantity</span>": <span class="hljs-value"><span class="hljs-number">50</span></span>,
+        "<span class="hljs-attribute">supplier</span>": <span class="hljs-value">[
+          {
+            "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">123</span></span>,
+            "<span class="hljs-attribute">supplier_name</span>": <span class="hljs-value"><span class="hljs-string">"Company A"</span></span>,
+            "<span class="hljs-attribute">supplier_status</span>": <span class="hljs-value"><span class="hljs-string">"active"</span></span>,
+            "<span class="hljs-attribute">supplier_supply_status</span>": <span class="hljs-value"><span class="hljs-string">"discontinue"</span>
+          </span>}
+        ]</span>,
+        "<span class="hljs-attribute">is_deletable</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+        "<span class="hljs-attribute">total_orders</span>": <span class="hljs-value"><span class="hljs-number">25</span></span>,
+        "<span class="hljs-attribute">created_at</span>": <span class="hljs-value"><span class="hljs-string">"2023-10-01T10:00:00Z"</span></span>,
+        "<span class="hljs-attribute">updated_at</span>": <span class="hljs-value"><span class="hljs-string">"2023-10-02T15:30:00Z"</span>
+      </span>}
+    ]
+  </span>}
+</span>}</code></pre><div style="height: 1px;"></div><h5>Schema</h5><pre><code>{
+  "<span class="hljs-attribute">$schema</span>": <span class="hljs-value"><span class="hljs-string">"http://json-schema.org/draft-04/schema#"</span></span>,
+  "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+  "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">request_id</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request ID"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">success</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"boolean"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request success flag"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"string"</span></span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Request timestamp"</span>
+    </span>}</span>,
+    "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+      "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"object"</span></span>,
+          "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{
+            "<span class="hljs-attribute">total_items</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total number of records"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">page_size</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Items per page"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">total_pages</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Total number of pages"</span>
+            </span>}</span>,
+            "<span class="hljs-attribute">current_page</span>": <span class="hljs-value">{
+              "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"number"</span></span>,
+              "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Current page"</span>
+            </span>}
+          </span>}</span>,
+          "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+            <span class="hljs-string">"total_items"</span>,
+            <span class="hljs-string">"page_size"</span>,
+            <span class="hljs-string">"total_pages"</span>,
+            <span class="hljs-string">"current_page"</span>
+          ]</span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Pagination"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">items</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"array"</span></span>,
+          "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"List of items"</span>
+        </span>}
+      </span>}</span>,
+      "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+        <span class="hljs-string">"pagination"</span>,
+        <span class="hljs-string">"items"</span>
+      ]</span>,
+      "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"Response data"</span>
+    </span>}
+  </span>}</span>,
+  "<span class="hljs-attribute">required</span>": <span class="hljs-value">[
+    <span class="hljs-string">"request_id"</span>,
+    <span class="hljs-string">"success"</span>,
+    <span class="hljs-string">"timestamp"</span>
+  ]
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div></div><div class="middle"><div id="product-productlist-get" class="action get"><h4 class="action-heading"><div class="name">productList</div><a href="#product-productlist-get" class="method get">GET</a><code class="uri">/products{?page,limit,sort,name,category_id,price,cost_price,status,inventory_status,stock_quantity,supplier_id,created_at}</code></h4><p>Get paginated product list with different display rules based on user authentication and role.</p>
+<h4 id="header-authentication">Authentication <a class="permalink" href="#header-authentication" aria-hidden="true">¶</a></h4>
+<p>If authentication fails, return error 401</p>
+<h4 id="header-authorization">Authorization <a class="permalink" href="#header-authorization" aria-hidden="true">¶</a></h4>
+<p>If user has [account.role] NOT IN (‘user’,‘admin’), return error 403</p>
+<h4 id="header-validation-2">Validation <a class="permalink" href="#header-validation-2" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>[Parameters.page], [Parameters.limit]: See <a href="#common-pagination">pagination</a> design</p>
+</li>
+<li>
+<p>[Parameters.sort]: See <a href="#common-sort">sort</a> design</p>
+</li>
+</ul>
+<h4 id="header-search-processing">Search Processing <a class="permalink" href="#header-search-processing" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p><strong>Basic search conditions:</strong> Get [products] records that satisfy all the following conditions</p>
+<ul>
+<li>[products.deleted_at] is null</li>
+<li>If [account.role] = ‘user’, add condition [product.status] = ‘active’
+<br /><br /></li>
+</ul>
+</li>
+<li>
+<p><strong>If [account.role] != ‘admin’ and the following Parameters are present, ignore those Parameters</strong></p>
+<ul>
+<li>[Parameters.cost_price]</li>
+<li>[Parameters.status]</li>
+<li>[Parameters.supplier_id]
+<br /><br /></li>
+</ul>
+</li>
+<li>
+<p><strong>Search specification for Parameters:</strong></p>
+<ul>
+<li>[Parameters.page], [Parameters.limit]: See <a href="#common-pagination">pagination</a> design</li>
+<li>[Parameters.sort]: See <a href="#common-sort">sort</a> design<br />
+Whitelist:
+<ul>
+<li>If [account.role] = ‘user’: <code>name</code>, <code>price</code>, <code>inventory_status</code>, <code>stock_quantity</code>, <code>created_at</code></li>
+<li>If [account.role] = ‘admin’: <code>name</code>, <code>price</code>, <code>cost_price</code>, <code>status</code>, <code>inventory_status</code>, <code>stock_quantity</code>, <code>total_orders</code>, <code>created_at</code></li>
+</ul>
+</li>
+<li><strong>See <a href="#common-filter">API search</a> design before implementing the filter Parameters below</strong></li>
+<li>[<a href="http://Parameters.name">Parameters.name</a>]: Add condition [<a href="http://products.name">products.name</a>] LIKE ‘%[<a href="http://Parameters.name">Parameters.name</a>]%’</li>
+<li>[Parameters.category_id]: Add condition that [product_categories] exists with
+<ul>
+<li>[product_categories.product_id] = [<a href="http://products.id">products.id</a>]</li>
+<li>[product_categories.category_id] = [Parameters.category_id]</li>
+</ul>
+</li>
+<li>[Parameters.price]:
+<ul>
+<li>If the part before comma in [Parameters.price] has value, add condition [products.price] &gt;= part before comma [Parameters.price]</li>
+<li>If the part after comma in [Parameters.price] has no value, add condition [products.price] &lt;= part before comma [Parameters.price]</li>
+</ul>
+</li>
+<li>[Parameters.cost_price]:
+<ul>
+<li>If the part before comma in [Parameters.cost_price] has value, add condition [products.cost_price] &gt;= part before comma [Parameters.cost_price]</li>
+<li>If the part after comma in [Parameters.cost_price] has no value, add condition [products.cost_price] &lt;= part before comma [Parameters.cost_price]</li>
+</ul>
+</li>
+<li>[Parameters.status]: Add condition [products.status] = [Parameters.status]</li>
+<li>[Parameters.inventory_status]:
+<ul>
+<li>If [Parameters.inventory_status] = <code>in_stock</code>, add condition [products.stock_quantity] &gt; 0</li>
+<li>If [Parameters.inventory_status] = <code>out_of_stock</code>, add condition [products.stock_quantity] = 0</li>
+</ul>
+</li>
+<li>[Parameters.stock_quantity]:
+<ul>
+<li>If the part before comma in [Parameters.stock_quantity] has value, add condition [products.stock_quantity] &gt;= part before comma [Parameters.stock_quantity]</li>
+<li>If the part after comma in [Parameters.stock_quantity] has no value, add condition [products.stock_quantity] &lt;= part before comma [Parameters.stock_quantity]</li>
+</ul>
+</li>
+<li>[Parameters.supplier_id]: Add condition that [product_suppliers] exists with
+<ul>
+<li>[product_suppliers.product_id] = [<a href="http://products.id">products.id</a>]</li>
+<li>[product_suppliers.supplier_id] = [Parameters.supplier_id]</li>
+<li>[supplier.deleted_at] is null</li>
+</ul>
+</li>
+<li>[Parameters.created_at]:
+<ul>
+<li>If the part before comma in [Parameters.created_at] has value, add condition [products.created_at] &gt;= part before comma [Parameters.created_at]</li>
+<li>If the part after comma in [Parameters.created_at] has no value, add condition [products.created_at] &lt;= part before comma [Parameters.created_at]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="header-data-response-processing">Data Response Processing <a class="permalink" href="#header-data-response-processing" aria-hidden="true">¶</a></h4>
+<ul>
+<li>
+<p>Default sort: [products.created_at] DESC
+<br /><br /></p>
+</li>
+<li>
+<p>[Response.data.items.pagination]: See <a href="#common-pagination">pagination</a> design
+<br /><br /></p>
+</li>
+<li>
+<p><strong>The following Response fields are only returned when [account.role] = ‘admin’</strong></p>
+<ul>
+<li>[Response.data.items.cost_price]</li>
+<li>[Response.data.items.supplier]</li>
+<li>[Response.data.items.is_deletable]
+<br /><br /></li>
+</ul>
+</li>
+<li>
+<p>Those not mentioned below return the value of the field with the exact same name in the DB</p>
+</li>
+<li>
+<p>[Response.data.items.category]: Return information of [categories] that satisfy all the following conditions</p>
+<ul>
+<li>[categories.deleted_at] is null</li>
+<li>[<a href="http://categories.id">categories.id</a>] = [product_categories.category_id] where [product_categories.product_id] = [<a href="http://products.id">products.id</a>]</li>
+</ul>
+</li>
+<li>
+<p>[Response.data.items.images]: Return information of [product_images] where [product_images.product_id] = [<a href="http://products.id">products.id</a>]</p>
+</li>
+<li>
+<p>[Response.data.items.inventory_status]:</p>
+<ul>
+<li>If [products.stock_quantity] &gt; 0, return <code>in_stock</code></li>
+<li>If [products.stock_quantity] = 0, return <code>out_of_stock</code></li>
+</ul>
+</li>
+<li>
+<p>[Response.data.items.supplier]: Return information of [suppliers] that satisfy all the following conditions</p>
+<ul>
+<li>[suppliers.deleted_at] is null</li>
+<li>[<a href="http://suppliers.id">suppliers.id</a>] = [product_suppliers.supplier_id] where [product_suppliers.product_id] = [<a href="http://products.id">products.id</a>]</li>
+</ul>
+</li>
+<li>
+<p>[Response.data.items.is_deletable]:</p>
+<ul>
+<li>If [orders] exists that satisfy all the following conditions, return false
+<ul>
+<li>[orders.status] != <code>canceled</code></li>
+<li>[order_details] exists that satisfy all the following conditions
+<ul>
+<li>[order_details.order_id] = [<a href="http://orders.id">orders.id</a>]</li>
+<li>[order_details.product_id] = [<a href="http://products.id">products.id</a>]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>If [orders] doesn’t exist that satisfy the above conditions, return true</li>
+</ul>
+</li>
+<li>
+<p>[Response.data.items.total_orders]: Return the number of [orders] records that satisfy all the following conditions</p>
+<ul>
+<li>[orders.status] != <code>canceled</code></li>
+<li>[order_details] exists that satisfy all the following conditions
+<ul>
+<li>[order_details.order_id] = [<a href="http://orders.id">orders.id</a>]</li>
+<li>[order_details.product_id] = [<a href="http://products.id">products.id</a>]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>page</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Page number</p>
+</dd><dt>limit</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>20</span></span><p>Items per page</p>
+</dd><dt>sort</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>-name</span></span><p>Sort fields with direction</p>
+</dd><dt>name</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>MacBook Pro</span></span><p>Filter by product name</p>
+</dd><dt>category_id</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>11</span></span><p>Filter by category ID</p>
+</dd><dt>price</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>[2000,3000]</span></span><p>Filter by price</p>
+</dd><dt>cost_price</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>[1000,2000]</span></span><p>Filter by cost price</p>
+</dd><dt>status</dt><dd><code>enum</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>active</span></span><p>Filter by product status</p>
+</dd><dt>inventory_status</dt><dd><code>enum</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>instock</span></span><p>Filter by inventory status</p>
+</dd><dt>stock_quantity</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>[50,100]</span></span><p>Filter by stock quantity</p>
+</dd><dt>supplier_id</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>12</span></span><p>Filter by supplier ID</p>
+</dd><dt>created_at</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>[2025-01-01,2025-12-31]</span></span></dd></dl></div></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 10 Oct 2025</p></div></div></div></div><script>/* eslint-env browser */
+/* eslint quotes: [2, "single"] */
+'use strict';
+
+/*
+  Determine if a string ends with another string.
+*/
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}
+
+/*
+  Get a list of direct child elements by class name.
+*/
+function childrenByClass(element, name) {
+  var filtered = [];
+
+  for (var i = 0; i < element.children.length; i++) {
+    var child = element.children[i];
+    var classNames = child.className.split(' ');
+    if (classNames.indexOf(name) !== -1) {
+      filtered.push(child);
+    }
+  }
+
+  return filtered;
+}
+
+/*
+  Get an array [width, height] of the window.
+*/
+function getWindowDimensions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.body,
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight;
+
+  return [x, y];
+}
+
+/*
+  Collapse or show a request/response example.
+*/
+function toggleCollapseButton(event) {
+    var button = event.target.parentNode;
+    var content = button.parentNode.nextSibling;
+    var inner = content.children[0];
+
+    if (button.className.indexOf('collapse-button') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        // Currently showing, so let's hide it
+        button.className = 'collapse-button';
+        content.style.maxHeight = '0px';
+    } else {
+        // Currently hidden, so let's show it
+        button.className = 'collapse-button show';
+        content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+function toggleTabButton(event) {
+    var i, index;
+    var button = event.target;
+
+    // Get index of the current button.
+    var buttons = childrenByClass(button.parentNode, 'tab-button');
+    for (i = 0; i < buttons.length; i++) {
+        if (buttons[i] === button) {
+            index = i;
+            button.className = 'tab-button active';
+        } else {
+            buttons[i].className = 'tab-button';
+        }
+    }
+
+    // Hide other tabs and show this one.
+    var tabs = childrenByClass(button.parentNode.parentNode, 'tab');
+    for (i = 0; i < tabs.length; i++) {
+        if (i === index) {
+            tabs[i].style.display = 'block';
+        } else {
+            tabs[i].style.display = 'none';
+        }
+    }
+}
+
+/*
+  Collapse or show a navigation menu. It will not be hidden unless it
+  is currently selected or `force` has been passed.
+*/
+function toggleCollapseNav(event, force) {
+    var heading = event.target.parentNode;
+    var content = heading.nextSibling;
+    var inner = content.children[0];
+
+    if (heading.className.indexOf('heading') === -1) {
+      // Clicked without hitting the right element?
+      return;
+    }
+
+    if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+      // Currently showing, so let's hide it, but only if this nav item
+      // is already selected. This prevents newly selected items from
+      // collapsing in an annoying fashion.
+      if (force || window.location.hash && endsWith(event.target.href, window.location.hash)) {
+        content.style.maxHeight = '0px';
+      }
+    } else {
+      // Currently hidden, so let's show it
+      content.style.maxHeight = inner.offsetHeight + 12 + 'px';
+    }
+}
+
+/*
+  Refresh the page after a live update from the server. This only
+  works in live preview mode (using the `--server` parameter).
+*/
+function refresh(body) {
+    document.querySelector('body').className = 'preload';
+    document.body.innerHTML = body;
+
+    // Re-initialize the page
+    init();
+    autoCollapse();
+
+    document.querySelector('body').className = '';
+}
+
+/*
+  Determine which navigation items should be auto-collapsed to show as many
+  as possible on the screen, based on the current window height. This also
+  collapses them.
+*/
+function autoCollapse() {
+  var windowHeight = getWindowDimensions()[1];
+  var itemsHeight = 64; /* Account for some padding */
+  var itemsArray = Array.prototype.slice.call(
+    document.querySelectorAll('nav .resource-group .heading'));
+
+  // Get the total height of the navigation items
+  itemsArray.forEach(function (item) {
+    itemsHeight += item.parentNode.offsetHeight;
+  });
+
+  // Should we auto-collapse any nav items? Try to find the smallest item
+  // that can be collapsed to show all items on the screen. If not possible,
+  // then collapse the largest item and do it again. First, sort the items
+  // by height from smallest to largest.
+  var sortedItems = itemsArray.sort(function (a, b) {
+    return a.parentNode.offsetHeight - b.parentNode.offsetHeight;
+  });
+
+  while (sortedItems.length && itemsHeight > windowHeight) {
+    for (var i = 0; i < sortedItems.length; i++) {
+      // Will collapsing this item help?
+      var itemHeight = sortedItems[i].nextSibling.offsetHeight;
+      if ((itemsHeight - itemHeight <= windowHeight) || i === sortedItems.length - 1) {
+        // It will, so let's collapse it, remove its content height from
+        // our total and then remove it from our list of candidates
+        // that can be collapsed.
+        itemsHeight -= itemHeight;
+        toggleCollapseNav({target: sortedItems[i].children[0]}, true);
+        sortedItems.splice(i, 1);
+        break;
+      }
+    }
+  }
+}
+
+/*
+  Initialize the interactive functionality of the page.
+*/
+function init() {
+    var i, j;
+
+    // Make collapse buttons clickable
+    var buttons = document.querySelectorAll('.collapse-button');
+    for (i = 0; i < buttons.length; i++) {
+        buttons[i].onclick = toggleCollapseButton;
+
+        // Show by default? Then toggle now.
+        if (buttons[i].className.indexOf('show') !== -1) {
+            toggleCollapseButton({target: buttons[i].children[0]});
+        }
+    }
+
+    var responseCodes = document.querySelectorAll('.example-names');
+    for (i = 0; i < responseCodes.length; i++) {
+        var tabButtons = childrenByClass(responseCodes[i], 'tab-button');
+        for (j = 0; j < tabButtons.length; j++) {
+            tabButtons[j].onclick = toggleTabButton;
+
+            // Show by default?
+            if (j === 0) {
+                toggleTabButton({target: tabButtons[j]});
+            }
+        }
+    }
+
+    // Make nav items clickable to collapse/expand their content.
+    var navItems = document.querySelectorAll('nav .resource-group .heading');
+    for (i = 0; i < navItems.length; i++) {
+        navItems[i].onclick = toggleCollapseNav;
+
+        // Show all by default
+        toggleCollapseNav({target: navItems[i].children[0]});
+    }
+}
+
+// Initial call to set up buttons
+init();
+
+window.onload = function () {
+    autoCollapse();
+    // Remove the `preload` class to enable animations
+    document.querySelector('body').className = '';
+};
+</script></body></html>

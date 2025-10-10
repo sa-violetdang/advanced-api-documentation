@@ -1,0 +1,34 @@
+### Sort [GET /sort{?sort}] 
+
+This document describes the common standard for handling query parameter **sort** (specify the order of returned results).
+
+#### Syntax
+
+* `sort=<field>`: Ascending order (default)<br />
+    Example: `?sort=name` (ascending by name)
+* `sort=-<field>`: Descending order (minus sign `-` before field name)<br />
+    Example: `?sort=-created_at` (descending by creation time)
+* Can sort by one or multiple fields. For multiple fields: separate with comma `,`
+    Example: `?sort=-created_at,name` (descending by creation time, then ascending by name)
+
+#### Validation
+
+* [Parameters.sort]:
+    * If syntax is incorrect (e.g., `sort=,-name`), return 422 error `SORT_SYNTAX_ERROR`
+    * Maximum 5 fields allowed per request<br />
+        If more than 5 fields specified, return 422 error `SORT_TOO_MANY_FIELDS`
+    * Only allowed to sort by fields in whitelist specified in each API design
+        If field is not in whitelist, return 422 error `SORT_FIELD_INVALID`
+
+#### Sort processing
+
+* If no minus sign `-` before field name: sort ASC
+* If minus sign `-` before field name: sort DESC
+* For multiple fields: Priority sort by earlier fields first, later fields second
+* Default behavior: `null` values at end for ascending, at beginning for descending
+* Stable sort: if field values are equal, original order (or default key like `id` ascending) is preserved
+
++ Parameters
+    + sort: `created_at,-name` (string, optional) - Sort fields with direction
+
++ Response 200 (application/json)

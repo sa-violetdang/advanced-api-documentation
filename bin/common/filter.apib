@@ -1,0 +1,63 @@
+### Filter [GET /filter{?name,category_id,status,in_stock,product_code,price,created_at}]
+
+This document describes the common standard for handling query parameters with filtering functionality
+
+#### Filter processing
+
+* When the same parameter name receives multiple values, join the conditions with OR
+    * Example 1: ?tel=123&tel=456<br />
+        → Search condition will be 
+        ```
+        WHERE (tel LIKE '%123%' OR tel LIKE '%456%')
+        ```
+    * Example 2: ?status=1&status=2<br />
+        → Search condition will be
+        ```
+        WHERE (status = 1 OR status = 2)
+        ```
+* For parameters with from-to search functionality that work as a pair, must send/receive in array format as follows
+    * Example: ?start_date=[2024-01-01,2024-01-31]&start_date=[2024-03-01,2024-03-31]<br />
+        → Search condition will be
+        ```
+        WHERE 
+            (
+                (start_date >= '2024-01-01' AND start_date <= '2024-01-31')
+                OR
+                (start_date >= '2024-03-01' AND start_date <= '2024-03-31')
+            )
+        ```
+* For parameters that work as a pair, must send/receive in array format as follows
+    * Example: ?product_code=[LAP,1203]&product_code=[SP,3201]<br />
+        → Search condition will be
+        ```
+        WHERE
+            (
+                (product_category = 'LAP' AND product_id = '1203')
+                OR
+                (product_category = 'SP' AND product_id = '3201')
+            )
+        ```
+* Join search conditions for different parameter names with AND
+    * Example: ?tel=123&tel=456&status=1&status=2&status=3&start_date=[2024-01-01,2024-01-31]&start_date=[2024-03-01,2024-03-31]<br />
+        → Search condition will be
+        ```
+        WHERE
+            (tel LIKE '%123%' OR tel LIKE '%456%')<br />
+            AND (status = 1 OR status = 2 OR status = 3)<br />
+            AND (
+                (start_date >= '2024-01-01' AND start_date <= '2024-01-31')
+                OR
+                (start_date >= '2024-03-01' AND start_date <= '2024-03-31')
+            )
+        ```
+
++ Parameters
+    + name: `MacBook Pro` (string, optional) - Filter by product name
+    + category_id: 11 (number, optional) - Filter by category ID
+    + status: `active` (enum, optional) - Filter by product status
+    + in_stock: true (boolean, optional) - Filter by instock flag
+    + product_code: `[LAP,1203]` (string, optional) - Filter by product code
+    + price: `[2000,3000]` (string, optional) - Filter by price
+    + created_at: `[2025-01-01,2025-12-31]` (string, optional) - Filter by creation timestamp
+
++ Response 200 (application/json)
