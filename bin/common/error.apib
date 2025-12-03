@@ -24,6 +24,7 @@ This document describes standard error responses for reuse.
 | 401 Unauthorized | Not properly authenticated | - Missing or invalid Authorization header<br />- Token expired / revoked<br />- Invalid JWT signature |
 | 403 Forbidden | Authenticated but not authorized | - Missing required role / scope<br />- Attempting to access resource outside allowed boundary (different tenant)<br />- Blocked by policy (e.g. account locked) |
 | 404 Not Found | Resource does not exist (or is concealed for security) | - ID not found<br />- Endpoint does not exist (possibly framework-generated 404) |
+| 409 Conflict | Resource state does not allow this operation | - The client's request cannot be fulfilled due to a conflict with the current state of the resource on the server |
 | 422 Unprocessable Entity | Payload is valid JSON but fails validation | - Missing required field<br />- Field violates pattern / format (email, enum, length)<br />- Other business validation errors (e.g. attempt to cancel an already delivered order) |
 | 429 Too Many Requests | Exceeded rate limit or quota | - More than environment variable value [RATE_LIMIT_PER_IP_PER_MINUTE] requests per minute per IP<br />- More than environment variable value [RATE_LIMIT_PER_USER_PER_HOUR] requests per hour per authenticated user<br />- Burst limit: More than environment variable value [RATE_LIMIT_PER_SECOND] requests per second |
 | 500 Internal Server Error | Unexpected server-side error | - Unhandled exception<br />- System / infrastructure failure (DB, cache, internal service)<br />- Other uncategorized error |
@@ -63,6 +64,18 @@ This document describes standard error responses for reuse.
         + error (object, required) - Error information
             + code: `NOT_FOUND_ERROR` (string, required) - Code
             + message: `Resource not found` (string, required) - Message
+
++ Response 409 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: false (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + error (object, required) - Error information
+            + code: `PRODUCT_ALREADY_DISCONTINUED` (string, required) - Code
+            + message: `Product has already been discontinued` (string, required) - Message
+            + details (array , optional) - Details of the error information
+                + (object)
+                    + See the design of each API
 
 + Response 422 (application/json)
     + Attributes (object)

@@ -1,0 +1,103 @@
+### productEdit [PUT /products/{id}]
+
+Edit product information.
+
+#### Authentication
+
+If authentication fails, return error 401
+
+#### Authorization
+
+If user has [account.role] NOT IN ('admin'), return error 403
+
+#### Validation
+
+* Get [products] record that satisfies all conditions below<br />
+    If no record satisfies the condition, return error 404 `ID_NOT_FOUND_ERROR`, pass {item name} = Product, return [products.id] in [Response.error.details]
+    * [products.id] = [Parameters.id]
+    * [products.deleted_at] is null
+<br /><br />
+* **Check required:** Same as [productCreate](#product-productcreate-post)
+* **Check data-type:** Same as [productCreate](#product-productcreate-post)
+* **Check length:** Same as [productCreate](#product-productcreate-post)
+* **Check value list:**
+    * If [Request.status] NOT IN ('active','inactive','discontinue'), return error 422
+* **Check valid id:** Same as [productCreate](#product-productcreate-post)
+
+#### Update Processing
+
+* Update [products] record where [products.id] = [Parameters.id]
+    * [name] = [Request.name]
+    * [description] = [Request.description]
+    * [price] = [Request.price]
+    * [status] = [Request.status]
+<br /><br />
+* Get [product_images] records that satisfy all conditions below
+    * [product_images.product_id] = [Parameters.id]
+    * [product_images.id] NOT IN [Parameters.image_ids]
+    * [product_images.deleted_at] is null
+* Based on the obtained [product_images.image_path], delete the corresponding file on S3
+* Update the obtained [product_images] records as follows
+    * [deleted_at] = system datetime
+<br /><br />
+* Upload [Request.images] to S3
+    * Folder name: product/{products.id}/{yyyy-mm-dd}
+        * {products.id}: [products.id] newly created above
+        * {yyyy-mm-dd}: current date
+    * File name: {10 random characters}_{UnixTimeStamp}.{file extension}
+* Insert multiple new records into the [product_images] table equal to the number of [Request.images] received
+    * [product_id] = [Parameters.id]
+    * [image_name] = original file name (not the name stored on S3)<br />
+    * [image_path] = path to file on S3<br />
+        Example: product/26/2024-04-11/0bDUs4aHvN_1712801483610.jpg
+<br /><br />
+* Get [product_categories] records that satisfy all conditions below
+    * [product_categories.product_id] = [Parameters.id]
+    * [product_categories.deleted_at] is null
+* Update the obtained [product_categories] records where [product_categories.category_id] NOT IN [Parameters.category_ids] as follows
+    * [deleted_at] = system datetime
+* Insert multiple new records into the [product_categories] table equal to the number of [Request.category_ids] NOT IN [product_categories.category_id] obtained above
+    * [product_id] = [products.id] newly created above
+    * [category_id] = [Request.category_ids]
+<br /><br />
+* Get [product_suppliers] records that satisfy all conditions below
+    * [product_suppliers.product_id] = [Parameters.id]
+    * [product_suppliers.deleted_at] is null
+* Update the obtained [product_suppliers] records where [product_suppliers.supplier_id] NOT IN [Parameters.supplier_ids] as follows
+    * [deleted_at] = system datetime
+* Insert multiple new records into the [product_suppliers] table equal to the number of [Request.supplier_ids] received
+    * [product_id] = [products.id] newly created above
+    * [supplier] = [Request.supplier_ids]
+    * [supplier_supply_status] =
+        * If [suppliers.supplier_status] = 'active', save 'continue'
+        * If [suppliers.supplier_status] = 'inactive', save 'discontinue'
+
++ Parameters
+    + id: 1 (number, optional) - Product ID
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.token
+
+    + Attributes (object)
+        + name: `MacBook Pro M4 16-inch` (string, required) - Product name
+        + description: `Powerful laptop for professionals` (string, optional) - Product description
+        + category_ids (array, optional) - Product categories
+            + 12 (number, required) - Category ID
+        + image_ids (array, optional) - Product images
+            + 14 (number, required) - Image ID
+        + images: `binary file` (array, optional) - Product images
+        + price: 2999.00 (number, required) - Product price in USD
+        + status: `active` (enum, required) - Product status
+        + supplier_ids (array, optional) - Product suppliers
+            + 13 (number, required) - Supplier ID
+
++ Response 201 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: true (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + data (object, optional) - Response data
+            + id: 1 (number, required) - Product ID
+            + updated_at: `2023-10-01T10:00:00Z` (string, required) - Last update timestamp

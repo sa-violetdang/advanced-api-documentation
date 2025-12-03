@@ -1,0 +1,48 @@
+### productDelete [DELETE /products/delete]
+
+Delete multiple products at once.
+
+#### Authentication
+
+If authentication fails, return error 401
+
+#### Authorization
+
+If user has [account.role] NOT IN ('admin'), return error 403
+
+#### Validation
+
+* For each id in the [Parameters.ids] array, get [products] record that satisfies all conditions below<br />
+    If any of the received [Parameters.ids] does not have a record that satisfies the condition,<br />
+    return error 404 `ID_NOT_FOUND_ERROR`, pass {item name} = Product, return [products.id] in [Response.error.details]
+    * [products.id] = [Parameters.ids]
+* If any of the [products] records obtained has [products.deleted_at] is not null,<br />
+    return error 409 `ID_ALREADY_DELETED`, pass {item name} = Product, return [products.id] in [Response.error.details]
+* If any of the [products] records obtained has [order_details.product_id] constraint (has had orders),<br />
+    return error 409 `PRODUCT_CANNOT_DELETE_HAS_ORDER`, return [products.id] in [Response.error.details]
+
+#### Delete Processing
+
+* Update [products] records where [products.id] = [Parameters.ids]
+    * [deleted_at] = system datetime
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.token
+
+    + Attributes (object)
+        + ids (array, required) - Product IDs
+            + 1 (number, required) - Product ID
+            + 2 (number, required) - Product ID
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: true (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + data (array, optional) - Response data
+            + (object)
+                + id: 1 (number, required) - Product ID
+                + name: `MacBook Pro M4 16-inch` (string, required) - Product name
+                + deleted_at: `2025-01-15T10:05:23.412Z` (string, required) - Deleted timestamp

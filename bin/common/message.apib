@@ -10,6 +10,10 @@ This document describes all message codes used throughout the API system.
 | UNAUTHORIZED_ERROR | 401 | Unauthorized | Missing or invalid Authorization header, token expired/revoked, invalid JWT signature |
 | FORBIDDEN_ERROR | 403 | Forbidden | Missing required role/scope, attempting to access resource outside allowed boundary, blocked by policy |
 | NOT_FOUND_ERROR | 404 | Resource not found | ID not found, endpoint does not exist |
+| ID_NOT_FOUND_ERROR | 404 | {item name} not found: {ids} | ID not found |
+| ID_ALREADY_DELETED | 409 | {item name} has already been deleted | The record has been deleted and this operation cannot be performed again. |
+| PRODUCT_ALREADY_DISCONTINUED | 409 | Product has already been discontinued | The product has already been discontinued and this operation cannot be performed again. |
+| PRODUCT_CANNOT_DELETE_HAS_ORDER | 409 | Cannot delete product with existing orders | The product has existing orders and cannot be deleted. Please use the productDiscontinue API instead of productDelete. |
 | VALIDATION_ERROR | 422 | Validation failed | Missing required field, field violates pattern/format, other business validation errors |
 | SORT_SYNTAX_ERROR | 422 | Invalid sort syntax | Sort parameter has incorrect syntax (e.g., `sort=,-name`) |
 | SORT_TOO_MANY_FIELDS | 422 | Too many sort fields | More than 5 fields specified in sort parameter |
@@ -21,6 +25,9 @@ This document describes all message codes used throughout the API system.
 | FIELD_VALUE_TOO_LARGE | 422 | Value above maximum ({max_value}) | Field value is larger than allowed maximum value<br />{max_value} = allowed maximum value |
 | FIELD_LENGTH_TOO_SHORT | 422 | Length below minimum ({min_length}) | Field length is shorter than required minimum length<br />{min_length} = required minimum length |
 | FIELD_LENGTH_TOO_LONG | 422 | Length above maximum ({max_length}) | Field length is longer than allowed maximum length<br />{max_length} = allowed maximum length |
+| FIELD_DECIMAL_LENGTH_INVALID | 422 | Decimal value exceeds allowed length (max {max_digit} digits, {max_decimal_place} decimal places) | The decimal value exceeds the allowed length |
+| FIELD_VALUE_NOT_IN_LIST | 422 | Value is not in allowed list | The value is not in the allowed list |
+| FOREIGN_KEY_NOT_FOUND | 422 | {Foreign key name} does not exist: {ids} | The foreign key does not exist in the reference table |
 | RATE_LIMIT_EXCEEDED_ERROR | 429 | Too many requests | Exceeded rate limit or quota thresholds |
 | INTERNAL_SERVER_ERROR | 500 | Internal server error | Unhandled exception, system/infrastructure failure |
 

@@ -127,23 +127,23 @@ If user has [account.role] NOT IN ('user','admin'), return error 403
                 + (object, optional)
                     + id: 1 (number, required) - Product ID
                     + name: `MacBook Pro M4 16-inch` (string, required) - Product name
-                    + description: `Powerful laptop for professionals` (string, required) - Product description
-                    + category (array, required) - Product category
+                    + description: `Powerful laptop for professionals` (string, optional) - Product description
+                    + category (array, optional) - Product categories
                         + (object, optional)
                             + id: 1 (number, required) - Category ID
                             + name: `Laptop` (string, required) - Category name
                         + (object, optional)
                             + id: 1 (number, required) - Category ID
                             + name: `Macbook` (string, required) - Category name
-                    + images (array, required) - Product images
-                        + `https://example.com/image1.jpg` (string, optional) - Image URL
-                        + `https://example.com/image2.jpg` (string, optional) - Image URL
+                    + images (array, optional) - Product images
+                        + `https://example.com/image1.jpg` (string, required) - Image URL
+                        + `https://example.com/image2.jpg` (string, required) - Image URL
                     + price: 2999.00 (number, required) - Product price in USD
                     + cost_price: 2000.00 (number, required) - Product cost price in USD
                     + status: `active` (enum, required) - Product status
                     + inventory_status: `in_stock` (string, optional) - Inventory status
                     + stock_quantity: 50 (number, required) - Available stock
-                    + supplier (array, required) - List of suppliers
+                    + supplier (array, optional) - List of suppliers
                         + (object, optional)
                             + id: 123 (number, required) - Supplier ID
                             + supplier_name: `Company A` (string, required) - Supplier name

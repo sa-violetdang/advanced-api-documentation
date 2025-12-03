@@ -1,0 +1,89 @@
+### productCreate [POST /products]
+
+Create a new product.
+
+#### Authentication
+
+If authentication fails, return error 401
+
+#### Authorization
+
+If user has [account.role] NOT IN ('admin'), return error 403
+
+#### Validation
+
+* **Check required**
+    * [Request.name]
+    * [Request.price]
+* **Check data-type**
+    * [Request.images]: png, jpg, jpeg
+    * [Request.price]: decimal, positive
+* **Check length**
+    * [Request.name]: max 255 characters
+    * [Request.description]: max 65535 characters
+    * [Request.images]: max 10 files, 10MB/ file
+    * [Request.price]: decimal(10,2)
+* **Check valid id**
+    * If no [categories] record exists that satisfies all the following conditions, return error 422 `FOREIGN_KEY_NOT_FOUND`, pass {Foreign key name} = Category, {ids} = non-existent ids
+        * [categories.id] = [Request.category_ids]
+        * [categories.deleted_at] is null
+    * If no [suppliers] record exists that satisfies all the following conditions, return error 422 `FOREIGN_KEY_NOT_FOUND`, pass {Foreign key name} = Supplier, {ids} = non-existent ids
+        * [suppliers.id] = [Request.supplier_ids]
+        * [suppliers.deleted_at] is null
+
+#### Creation Processing
+
+* Insert a new record into the [products] table
+    * [name] = [Request.name]
+    * [description] = [Request.description]
+    * [price] = [Request.price]
+    * [cost_price] = 0
+    * [status] = 'inactive'
+    * [inventory_status] = 'out_of_stock'
+    * [stock_quantity] = 0
+<br /><br />
+* Upload [Request.images] to S3
+    * Folder name: product/{products.id}/{yyyy-mm-dd}
+        * {products.id}: newly created [products.id] above
+        * {yyyy-mm-dd}: current date
+    * File name: {10 random characters}_{UnixTimeStamp}.{file extension}
+* Insert multiple new records into the [product_images] table equal to the number of [Request.images] received
+    * [product_id] = newly created [products.id] above
+    * [image_name] = original file name (not the name stored on S3)<br />
+    * [image_path] = path to file on S3<br />
+        Example: product/26/2024-04-11/0bDUs4aHvN_1712801483610.jpg
+<br /><br />
+* Insert multiple new records into the [product_categories] table equal to the number of [Request.category_ids] received
+    * [product_id] = newly created [products.id] above
+    * [category_id] = [Request.category_ids]
+<br /><br />
+* Insert multiple new records into the [product_suppliers] table equal to the number of [Request.supplier_ids] received
+    * [product_id] = newly created [products.id] above
+    * [supplier] = [Request.supplier_ids]
+    * [supplier_supply_status] =
+        * If [suppliers.supplier_status] = 'active', save 'continue'
+        * If [suppliers.supplier_status] = 'inactive', save 'discontinue'
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.token
+
+    + Attributes (object)
+        + name: `MacBook Pro M4 16-inch` (string, required) - Product name
+        + description: `Powerful laptop for professionals` (string, optional) - Product description
+        + category_ids (array, optional) - Product categories
+            + 12 (number, required) - Category ID
+        + images: `binary file` (array, optional) - Product images
+        + price: 2999.00 (number, required) - Product price in USD
+        + supplier_ids (array, optional) - Product suppliers
+            + 13 (number, required) - Supplier ID
+
++ Response 201 (application/json)
+    + Attributes (object)
+        + request_id: `a1c7f92d-5f1b-4f09-9e3d-1e2f7e8b2c11` (string, required) - Request ID
+        + success: true (boolean, required) - Request success flag
+        + timestamp: `2025-01-15T10:05:23.412Z` (string, required) - Request timestamp
+        + data (object, optional) - Response data
+            + id: 1 (number, required) - Product ID
+            + created_at: `2023-10-01T10:00:00Z` (string, required) - Creation timestamp
