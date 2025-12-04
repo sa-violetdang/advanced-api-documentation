@@ -64,7 +64,7 @@ If user has [account.role] NOT IN ('admin'), return error 403
         * If [suppliers.supplier_status] = 'active', save 'continue'
         * If [suppliers.supplier_status] = 'inactive', save 'discontinue'
 
-+ Request (application/json)
++ Request (multipart/form-data)
     + Headers
 
             Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.token
